@@ -7,10 +7,10 @@ with open('day_5/input.txt') as f:
     while True:
         input = f.readline().strip()
 
-        if not input and after_ranges:
-            break
-        
         if not input:
+            if after_ranges:
+                break
+
             after_ranges = True
             continue
 
