@@ -1,6 +1,5 @@
 import numpy as np
 
-
 lines = []
 with open('day_7/input.txt') as f:
     while True:
@@ -53,6 +52,7 @@ def track_beams(lines, line_idx, col_idx, count_cache):
         
         # check left and right for beams
         if col_idx-1 >= 0 and lines[line_idx][col_idx-1] == '^':
+            # caching
             if count_cache[line_idx-1][col_idx-1] != -1:
                 count += count_cache[line_idx-1][col_idx-1]
             else:
@@ -60,12 +60,14 @@ def track_beams(lines, line_idx, col_idx, count_cache):
                 count += count_cache[line_idx-1][col_idx-1]
         
         if col_idx+1 < len(lines[line_idx]) and lines[line_idx][col_idx+1] == '^':
+            # caching
             if count_cache[line_idx-1][col_idx+1] != -1:
                 count += count_cache[line_idx-1][col_idx+1]
             else:
                 count_cache[line_idx-1][col_idx+1] = track_beams(lines, line_idx-1, col_idx+1, count_cache)
                 count += count_cache[line_idx-1][col_idx+1]
 
+        # track beam up.
         if count_cache[line_idx-1][col_idx] != -1:
             count += count_cache[line_idx-1][col_idx]
         else:
@@ -88,18 +90,22 @@ for line in lines:
 with open('day_7/output.txt', 'w') as f:
     f.write(out_str)
 
-print(count)
+print(f'part_1: {count}')
 
-# part 2: parse it after constructing the tree? 
-# naive idea:
-# for each beam in the last line, trace it up to a split, then check up left and up right for other beams
-# increment count for each split, then call recursive function on each split.
+# part 2:
+# start with each beam at the bottom of the image,
+# follow each beam up, checking for splitters to the left and right each step,
+# tracking each possible branch that can travel from this end beam, to the start. 
+# sum this for all beams in the bottom row, which is the total number of paths possible.
+#
+# i use a cache as this algorithm will need to know the number of paths from many locations
+# within the tree, so once i calculate it once i can store it in the cache and massively
+# improve performance
 
 count_cache = np.array([[-1 for _ in range(len(lines[0]))] for _ in range(len(lines))])
-
 count = 0
 for i in range(len(lines[-1])):
 
     count += track_beams(lines, len(lines)-1, i, count_cache)
 
-print(count)
+print(f'part_2: {count}')
