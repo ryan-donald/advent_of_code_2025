@@ -66,12 +66,11 @@ with open('day_3/input.txt') as f:
         
         joltages.append(first_max*10 + second_max)
 
-print(sum(joltages))
+print(f'part 1: {sum(joltages)}')
         
 # part 2
 
 joltages = []
-
 
 # recursive approach, since we need to do the above algorithm 12 times instead of twice.
 # find the left-most occurance of the maximum digit in the substring [start, end-depth],
@@ -87,4 +86,4 @@ with open('day_3/input.txt') as f:
         result = find_next_num(input, 12)
         joltages.append(int(result))
 
-print(sum(joltages))
+print(f'part 2: {sum(joltages)}')

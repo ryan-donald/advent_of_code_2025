@@ -29,7 +29,7 @@ for info in input_info:
             count += 1
             break
 
-print(count)
+print(f'part 1: {count}')
 
 # part 2
 
@@ -64,4 +64,4 @@ count = 0
 for bounds in input_ranges:
     count += bounds[1] - bounds[0] + 1
 
-print(count)
+print(f'part 2: {count}')

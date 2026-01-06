@@ -28,12 +28,8 @@ with open('day_9/input.txt', 'r') as f:
         points.append(tuple(int(x) for x in line.split(',')))
 
 points = np.array(points)
-
 differences = np.diagonal(np.subtract.outer(points, points), axis1=1, axis2=3)
-
 areas = np.prod(np.abs(differences) + 1, axis=2)
-
-print(np.max(areas))
 
 # loop through areas, starting from maximum and going downwards.
 track = 0
@@ -60,5 +56,6 @@ while True:
             break
 
     if valid_rectangle:
-        print(f'found rectangle: {rect_p1}, {rect_p2}, with area {areas[idxs]}')
+        print(f'part 2: {areas[idxs]}')
         break
+

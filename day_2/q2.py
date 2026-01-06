@@ -1,10 +1,7 @@
-
-
 with open("day_2/input.txt") as f:
     input = f.readline()
 
 id_ranges = input.strip().split(',')
-
 invalid_ids = []
 
 # part 1
@@ -24,10 +21,9 @@ for bounds in id_ranges:
         if first_half == second_half:
             invalid_ids.append(i)
 
-print(sum(invalid_ids))
+print(f'part 1: {sum(invalid_ids)}')
 
 # part 2
-
 invalid_ids = []
 
 for bounds in id_ranges:
@@ -53,7 +49,7 @@ for bounds in id_ranges:
                 invalid_ids.append(i)
                 break
 
-print(sum(invalid_ids))
+print(f'part 2: {sum(invalid_ids)}')
 
             
             

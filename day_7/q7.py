@@ -34,9 +34,7 @@ def track_beams(lines, line_idx, col_idx, count_cache):
     # cases to check:
     # 1. at top of the tree. Return 1. Termination case, can't be zero because the case with 0 splitters has 1 path.
 
-    # 2. current position is a beam. Check left and right for beams. If found, continue up that way.
-    
-    # print(line_idx, col_idx)
+    # 2. current position is a beam. Check left and right for beams. If found, continue up that way in addition.
 
     # base case. Count = 1. Each 'path' that reaches the top counts as 1.
     if lines[line_idx][col_idx] == 'S':
@@ -82,7 +80,6 @@ count = 0
 for line_idx in range(1, len(lines)):
     count += parse_line(lines, line_idx)
 
-# print(lines)
 out_str = ''
 for line in lines:
     out_str += ''.join(line) + '\n'
@@ -98,9 +95,9 @@ print(f'part_1: {count}')
 # tracking each possible branch that can travel from this end beam, to the start. 
 # sum this for all beams in the bottom row, which is the total number of paths possible.
 #
-# i use a cache as this algorithm will need to know the number of paths from many locations
-# within the tree, so once i calculate it once i can store it in the cache and massively
-# improve performance
+# i use a cache as this algorithm will need to know the number of paths from an incredibly
+# large number of locations within the tree, so once i calculate it once i can store it in the cache 
+# and massively improve performance
 
 count_cache = np.array([[-1 for _ in range(len(lines[0]))] for _ in range(len(lines))])
 count = 0

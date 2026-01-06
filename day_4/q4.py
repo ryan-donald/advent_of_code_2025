@@ -61,7 +61,7 @@ with open('day_4/input.txt') as f:
 
 # print(f"Time taken: {end - start} seconds")
 
-# print(num_valid)
+# print(f'part 1: {num_valid}')
 
 
 # optimized approach, starts the same as above, except whenever a roll is picked recursively
@@ -80,4 +80,4 @@ for y in range(len(lines[0])):
 # end = time.perf_counter()
 
 # print(f"Time taken: {end - start} seconds")
-print(num_valid)
+print(f'part 2: {num_valid}')

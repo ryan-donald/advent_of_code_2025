@@ -10,8 +10,7 @@ def evaluate_expression(expr, operator):
             result *= num
         return result
     else:
-        raise ValueError("Unsupported operator")
-
+        raise ValueError("unsupported operator")
 
 lines = []
 idx = 0 
@@ -43,7 +42,7 @@ for line in lines:
     result = evaluate_expression(expr, operator)
     sum+=result
 
-print(sum)
+print(f'part 1: {sum}')
 
 # part 2
 with open('day_6/input.txt') as f:
@@ -82,4 +81,4 @@ for line in expressions:
     result = evaluate_expression(expr, operator)
     sum+=result
 
-print(sum)
+print(f'part 2: {sum}')

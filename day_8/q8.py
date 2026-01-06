@@ -10,11 +10,8 @@ with open('day_8/input.txt', 'r') as f:
         coords = line.split(',')
         positions.append(list(float(c) for c in coords))
 
-# print(positions)
-
 # convert to numpy array
 positions = np.array(positions, dtype=float)
-print(positions.shape)
 
 # compute pairwise distances
 subtracted = np.diagonal(np.subtract.outer(positions, positions), axis1=1, axis2=3)
@@ -38,15 +35,16 @@ circuits = []
 i = 0
 num_circuits = 1
 num_boxes = len(positions)
+
+# for _ in range(1000):
+
 while num_circuits < num_boxes:
 
     # find minimum distance for each point
     min_distances = np.min(distances, axis=1)
 
     first_box = np.argmin(min_distances)
-    # print(f'first_box: {first_box}, position: {positions[first_box]}')
     second_box = np.argmin(distances[first_box])
-    # print(f'second_box: {second_box}, position: {positions[second_box]}')
 
     distances[first_box][second_box] = 9999999999
     distances[second_box][first_box] = 9999999999
@@ -54,7 +52,6 @@ while num_circuits < num_boxes:
     # creates the first circuit
     if i == 0:
         circuits.append(set([first_box, second_box]))
-        # print(circuits)
 
     # every other pair
     else:
@@ -89,3 +86,12 @@ while num_circuits < num_boxes:
 
     num_circuits = len(circuits[0])
     i += 1
+
+# to calculate part 1, loop using the for loop statement above, for part 1 loop using the while loop statement above
+
+# sorted = sorted(circuits, key=lambda x: len(x), reverse=True)
+# result = len(sorted[0]) * len(sorted[1]) * len(sorted[2])
+
+# print(f'part 1: {result}')
+
+# print(f'part 2: {positions[first_box][0] * positions[second_box][0]}')
